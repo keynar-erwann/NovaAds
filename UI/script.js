@@ -1,5 +1,5 @@
-const form       = document.getElementById("search-form");
-const input      = document.querySelector(".search-form-input");
+const form = document.getElementById("search-form");
+const input = document.querySelector(".search-form-input");
 const chatWindow = document.getElementById("chat-window");
 
 function getSessionId() {
@@ -155,7 +155,7 @@ async function fetchNovaResponse(userInput) {
 
 async function displayGeneratedImage() {
   try {
-    const res = await fetch("/image");
+    const res = await fetch(`/image?session_id=${SESSION_ID}`);
     if (!res.ok) return;
 
     const blob = await res.blob();
