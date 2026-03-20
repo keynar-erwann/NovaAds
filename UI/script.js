@@ -148,7 +148,7 @@ async function fetchNovaResponse(userInput) {
 
   } catch (err) {
     working.remove();
-    appendMessage("nova", "Something went wrong. Try again lil broo lmaooo");
+    appendMessage("nova", "Something went wrong. Try again bro.");
     console.error("fetchNovaResponse error:", err);
   }
 }
