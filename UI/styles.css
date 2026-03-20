@@ -22,13 +22,12 @@ body {
 	max-width: 950px;
 	background-color: var(--eerie-black);
 	margin: 0 auto;
-	overflow-x: hidden;
 }
 
 .container {
 	max-width: 900px;
 	margin: 0 auto;
-	padding: 40px 20px 60px;
+	padding: 40px 0 60px 0;
 }
 
 /*Header*/
@@ -36,10 +35,9 @@ header {
 	margin: 0;
 	padding: 20px 0;
 }
-
 h1 {
 	font-family: var(--font-title);
-	font-size: clamp(30px, 7vw, 65px);
+	font-size: 65px;
 	color: var(--floral-white);
 	letter-spacing: 1.3px;
 	text-align: center;
@@ -48,7 +46,7 @@ h1 {
 
 h4 {
 	font-family: var(--font-ui);
-	font-size: clamp(14px, 2.5vw, 23px);
+	font-size: 23px;
 	font-weight: 400;
 	color: var(--floral-white);
 	letter-spacing: 1.6px;
@@ -69,10 +67,9 @@ main {
 }
 
 #chat-window {
-	max-height: clamp(280px, 50vh, 500px);
+	max-height: 400px;
 	overflow-y: auto;
 	margin: 30px;
-	scroll-behavior: smooth;
 }
 
 .chat {
@@ -81,7 +78,6 @@ main {
 }
 
 .message-user,
-.message-nova,
 .message-guru {
 	font-family: var(--font-body);
 	color: var(--floral-white);
@@ -112,7 +108,6 @@ main {
 	margin: 20px 0px 25px 0px;
 }
 
-.message-nova,
 .message-guru {
 	background-color: var(--timberwolf);
 	color: var(--eerie-black);
@@ -125,35 +120,7 @@ main {
 	animation: slide-fade-in 0.5s ease-out;
 }
 
-/* Ad poster image & download */
-.ad-poster {
-	max-width: 100%;
-	height: auto;
-	border-radius: 8px;
-	display: block;
-	margin-top: 8px;
-}
-
-.download-btn {
-	display: inline-block;
-	margin-top: 10px;
-	padding: 8px 18px;
-	background-color: var(--flame);
-	color: var(--floral-white);
-	border-radius: 8px;
-	text-decoration: none;
-	font-family: var(--font-ui);
-	font-size: 14px;
-	font-weight: 600;
-	letter-spacing: 0.4px;
-}
-
-.download-btn:hover {
-	background-color: var(--timberwolf);
-	color: var(--flame);
-}
-
-
+/*Search Bar*/
 .input-area {
 	width: 100%;
 	max-width: 100%;
@@ -194,7 +161,6 @@ main {
 	padding: 15px 30px;
 	cursor: pointer;
 	white-space: nowrap;
-	transition: background 0.2s, color 0.2s;
 }
 
 .search-form-button:hover {
@@ -279,7 +245,7 @@ footer strong {
 	}
 }
 
-@keyframes slide-fade-in {
+@keyframes slid-fade-in {
 	from {
 		opacity: 0;
 		transform: translateY(10px) scale(0.98);
@@ -290,24 +256,22 @@ footer strong {
 	}
 }
 
-
 @media (max-width: 768px) {
+	h1 {
+		font-size: 38px;
+	}
+
+	h4 {
+		font-size: 16px;
+		letter-spacing: 1px;
+	}
+
 	.container {
-		padding: 24px 16px 40px;
+		padding: 40px 20px;
 	}
 
 	main {
-		margin: 16px 0;
-		border-radius: 14px;
-	}
-
-	#chat-window {
-		margin: 16px;
-		max-height: 45vh;
-	}
-
-	.input-area {
-		margin: 20px 0;
+		padding: 30px 16px;
 	}
 
 	.search-form {
@@ -316,62 +280,27 @@ footer strong {
 
 	.search-form-input {
 		width: 100%;
-		padding: 14px 16px;
-		font-size: 16px;
+		padding: 15px;
 	}
 
 	.search-form-button {
 		width: 100%;
-		padding: 14px;
+		padding: 15px;
 		text-align: center;
 	}
 
 	.message-user,
-	.message-nova,
 	.message-guru {
-		max-width: 92%;
-		font-size: 16px;
+		max-width: 100%;
+		font-size: 15px;
 	}
 
 	footer {
 		flex-direction: column;
 		align-items: center;
 		text-align: center;
-		gap: 12px;
+		gap: 16px;
 	}
 
-	.download-btn {
-		display: block;
-		text-align: center;
-	}
-}
 
-
-@media (max-width: 480px) {
-	.container {
-		padding: 16px 12px 28px;
-	}
-
-	#chat-window {
-		margin: 12px;
-		max-height: 40vh;
-	}
-
-	.message-user,
-	.message-nova,
-	.message-guru {
-		max-width: 100%;
-		font-size: 15px;
-		padding: 8px 12px;
-	}
-
-	.search-form-input {
-		font-size: 15px;
-		padding: 12px 14px;
-	}
-
-	.search-form-button {
-		font-size: 15px;
-		padding: 12px;
-	}
 }
