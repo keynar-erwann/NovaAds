@@ -1,23 +1,23 @@
-# 🔮 Nova Ads: AI-Driven Graphic Designer & Ad Strategist
+# Nova Ads: AI-Driven Graphic Designer & Ad Strategist
 
-Nova Ads is a sophisticated AI-powered web application designed to automate the process of market research and advertisement creation. It features an AI Agent called "Nova" that assists users by researching their product niche, analyzing market trends, and generating high-converting ad posters.
+Nova Ads is a AI-powered web application designed to automate the process of market research and advertisement creation. It features an AI Agent called "Nova" that assists users by researching their product niche, analyzing market trends, and generating high-converting ad posters.
 
 
 
 ## Features
 
-*   **Intelligent Agentic Workflow:** Nova isn't just a chatbot; she's an agent capable of using a suite of tools (Web Search, Market Analysis, Content Extraction) to make informed design decisions.
-*   **Automated Market Research:** Integrated with Serper and Tavily to gather real-time data on products, trends, and competitors in specific countries and languages.
-*   **AI Image Generation:** Uses Google's Gemini-3.1-flash-image models to generate professional advertisement posters based on strategic analysis.
-*   **SQL Session Management:** Implements a robust SQL-based repository (SQLite) to store message history and maintain session state across user interactions.
+**Intelligent Agentic Workflow:** Nova isn't just a chatbot, it's an agent capable of using a suite of tools (Web Search, Market Analysis, Content Extraction) to make informed design decisions.
+**Automated Market Research:** Integrated with Serper and Tavily to gather real-time data on products, trends, and competitors in specific countries and languages.
+**AI Image Generation:** Uses Google's Gemini-3.1-flash-image models to generate professional advertisement posters based on strategic analysis.
+**SQL Session Management:** Implements a robust SQL-based repository (SQLite) to store message history and maintain session state across user interactions.
 
 
 
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 *   **Frontend:** JavaScript, HTML, CSS.
-*   **Backend:** Python (FastAPI).
+*   **Backend:** Python (FastAPI) and Strands Agents from Amazon.
 *   **Database:** SQL (SQLite) for history and memory management.
 *   **AI Models:** 
     *   **Logic:** Gemini-2.5-flash
@@ -38,7 +38,7 @@ Nova Ads is a sophisticated AI-powered web application designed to automate the 
     └── script.js       # Frontend logic & API interaction
 
 
-Note: The database (`memory.db`) and the `generated_ads/` folder are created automatically in the root directory when the application is first run.
+Note: The database (memory.db) and the generated_ads/ folder are created automatically in the root directory when the application is first run.
 
 
 
@@ -49,12 +49,12 @@ Ensure you have **Python 3.10+** installed on your system.
 
 ### 2. Installation
 Clone the repository and install the required Python libraries:
-```bash
+
 pip install -r requirements.txt
-```
+
 
 ### 3. Environment Variables
-Create a `.env` file in the root directory and add your API keys:
+Create a .env file in the root directory and add your API keys:
 
 GOOGLE_API_KEY=your_gemini_key
 TAVILY_API_KEY=your_tavily_key
@@ -67,12 +67,12 @@ Start the FastAPI server:
 
 python app.py
 
-The application will be accessible at `http://localhost:8000`.
+The application will be accessible at http://localhost:8000.
 
 
 
 ## Nova
 When you submit a request, Nova follows a structured advertising pipeline:
-1.  **Market Research:** Uses `market_research` and `web_search` to understand your niche.
+1.  **Market Research:** Uses market_research and web_search to understand your niche.
 2.  **Strategic Analysis:** Processes extracted data to find the best angle for your ad.
-3.  **Creative Design:** Crafts a detailed prompt and generates the ad poster using the `generate_image` tool.
+3.  **Creative Design:** Crafts a detailed prompt and generates the ad poster using the generate_image tool.
