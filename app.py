@@ -68,6 +68,8 @@ app.add_middleware(
 
 
 UI_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "UI")
+SESSIONS_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "generated_ads")
+os.makedirs(SESSIONS_DIR, exist_ok=True)
 
 gemini_key = os.environ.get("GOOGLE_API_KEY")
 
@@ -77,36 +79,6 @@ model = GeminiModel(
 )
 
 
-@tool
-def generate_image(prompt: str, image: Optional[str] = None) -> str:
-    """
-    Generate an ad poster image from a prompt.
-
-    Args:
-        prompt: Detailed description of the image to generate.
-        image:  Optional path to a base image to edit.
-
-    Returns:
-        A confirmation string when the image has been saved.
-    """
-    client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
-    contents = [prompt]
-
-    if image is not None:
-        img_obj = Image.open(image)
-        contents.append(img_obj)
-
-    response = client.models.generate_content(
-        model="gemini-3.1-flash-image-preview",
-        contents=contents,
-    )
-    for part in response.parts:
-        if part.text is not None:
-            return part.text
-        elif part.inline_data is not None:
-            img = part.as_image()
-            img.save(os.path.join(UI_DIR, "advertisement.png"))
-            return "__IMAGE_READY__"
 
 
 @tool
@@ -220,6 +192,27 @@ init_db()
 
 
 async def stream_nova_response(prompt: str, session_id: str) -> AsyncGenerator[str, None]:
+    @tool
+    def generate_image(prompt: str, image: Optional[str] = None) -> str:
+        """
+        Generate an ad poster image.
+        """
+        client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
+        contents = [prompt]
+        if image is not None:
+            img_obj = Image.open(image)
+            contents.append(img_obj)
+        response = client.models.generate_content(
+            model="gemini-3.1-flash-image-preview",
+            contents=contents,
+        )
+        for part in response.parts:
+            if part.inline_data is not None:
+                img = part.as_image()
+                img.save(os.path.join(SESSIONS_DIR, f"ad_{session_id}.png"))
+                return "__IMAGE_READY__"
+        return "Failed."
+
     agent = Agent(
         model=model,
         system_prompt=graphic_designer_prompt,
@@ -260,8 +253,8 @@ async def chat(request: ChatRequest):
 
 
 @app.get("/image")
-async def serve_image():
-    image_path = os.path.join(UI_DIR, "advertisement.png")
+async def serve_image(session_id: str):
+    image_path = os.path.join(SESSIONS_DIR, f"ad_{session_id}.png")
     if not os.path.exists(image_path):
         return JSONResponse({"error": "No image generated yet."}, status_code=404)
     return FileResponse(image_path, media_type="image/png")
