@@ -78,7 +78,7 @@ main {
 }
 
 .message-user,
-.message-guru {
+.message-nova {
 	font-family: var(--font-body);
 	color: var(--floral-white);
 	padding: 10px 16px;
@@ -108,7 +108,7 @@ main {
 	margin: 20px 0px 25px 0px;
 }
 
-.message-guru {
+.message-nova {
 	background-color: var(--timberwolf);
 	color: var(--eerie-black);
 	font-size: 20px;
@@ -290,7 +290,7 @@ footer strong {
 	}
 
 	.message-user,
-	.message-guru {
+	.message-nova {
 		max-width: 100%;
 		font-size: 15px;
 	}
