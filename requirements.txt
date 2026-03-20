@@ -1,0 +1,10 @@
+python-dotenv
+tavily-python
+google-genai
+strands-agents
+strands-agents[gemini]
+Pillow
+strands-agents-tools
+fastapi 
+uvicorn 
+python-multipart
