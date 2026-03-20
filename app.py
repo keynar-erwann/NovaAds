@@ -66,8 +66,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 UI_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "UI")
-app.mount("/static", StaticFiles(directory=UI_DIR), name="static")
 
 gemini_key = os.environ.get("GOOGLE_API_KEY")
 
@@ -245,9 +245,6 @@ async def stream_nova_response(prompt: str, session_id: str) -> AsyncGenerator[s
     return generate()
 
 
-@app.get("/")
-async def serve_index():
-    return FileResponse(os.path.join(UI_DIR, "index.html"))
 
 
 @app.post("/chat")
@@ -268,6 +265,9 @@ async def serve_image():
     if not os.path.exists(image_path):
         return JSONResponse({"error": "No image generated yet."}, status_code=404)
     return FileResponse(image_path, media_type="image/png")
+
+
+app.mount("/", StaticFiles(directory=UI_DIR, html=True), name="ui")
 
 
 if __name__ == "__main__":

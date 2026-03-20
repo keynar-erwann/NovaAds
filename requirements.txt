@@ -8,3 +8,4 @@ strands-agents-tools
 fastapi 
 uvicorn 
 python-multipart
+requests
